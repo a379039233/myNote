@@ -1,0 +1,178 @@
+抽得：关帝灵签 第五十二签 己乙 上吉
+签词：兀坐幽居叹寂寥，孤灯掩映度清宵；
+万金忽报秋光好，活计扁舟渡北朝。
+不过，我最感兴趣的是特斯拉的思维方 式：
+
+他的灵感，似泉水般涌出，但并非源于自身
+他具有超强预感能力
+
+他的思维方式：
+
+他（的意识）去外面遨游，来到一个陌生的地方，住在那里，认识了很多非常亲近的人， 跟他们交谈。后来，他可以随时进入这个状态，可以感知探索普通人无法感知的景象和景物，甚至可以进入其他空间和时间旅行。
+
+在这种状态下，他可以：
+
+听到其他房间闹钟滴答作响，
+一只苍蝇落到桌子上，发出缓慢沉闷的的巨响。
+前 额有一种缓慢蠕动的感觉，
+觉察到黑暗里一个物体的存在，
+太阳在我头脑里引起可怕的轰鸣
+一辆马车驶过，让我感到浑身剧烈震撼
+紧 接着各种构思，如强光一般一闪而过
+并在瞬间证明了他们的真实性
+那是一种让人疯狂的快乐
+许多有创造力的人都会自发进入这种状态
+斯 特拉慢慢学会了对这种状态饿控制，只要愿意，可以随时进入状态，让他具有内视能力，让各种构想在脑中得以完善，直至完美
+在把它画在图纸上之前，整 体设想都是在大脑中完成
+，做一些改进，然后进行试运转
+不管是在大脑中测试，还是在车间测试，效果都是一样的
+他不需要进行数学运 算，根本不需要列出方程式，而是能直接看到食物的本质
+在他掌握细节之前，就已经掌握了事物的本质
+他进入状态之后，看到的全是事物的核心属 性
+
+他的头脑就像一个接收器，太空中存在一切事物的核心机密，它是我们知识和灵感的来 源，他没有彻底了解这个核心众多的秘密，但它们确实存在。
+
+如果这样，我们就没有理由怀疑中国古代”真人“的存在
+
+更没有理由怀 疑《黄帝内经》中描述的一切。
+
+cctv10，竟然通过一个外国天才来证明中国古代经典，太有才了，呵呵
+
+不过象尼古拉. 特斯拉这样，不经过修炼就通天的天生“真人”，估计是万年一遇级别的。
+很多程序在创建线程都这样写的：
+ThreadHandle = CreateThread(NULL,0,.....);
+CloseHandel(ThreadHandle );
+1，线程和线程句柄（Handle）不是一个东西，线程是在cpu上运行的.....（说不清楚了），线程句柄是一个内核对象。我们可以通过句柄来操作线程，但是线程的生命周期和线程句柄的生命周期不一样的。线程的生命周期就是线程函数从开始执行到return，线程句柄的生命周期是从CreateThread返回到你CloseHandle()。
+2，线程句柄是一种内核对象,系统维护着每一个内核对象,当每个内核对象引用记数为0时,系统就从内存中释放该对象,CloseHandle就是将该线程对象的引用记数减1。所有的内核对象（包括线程Handle）都是系统资源，用了要还的，也就是说用完后一定要closehandle关闭之，如果不这么做，你系统的句柄资源很快就用光了。
+只是关闭了一个线程句柄对象，表示我不再使用该句柄，即不对这个句柄对应的线程做任何干预了。并没有结束线程。
+《windows核心编程》上说调用closehandle(HANDLE)表示创建者放弃对该内核对象的操作。如果该对象的引用对象记数为0就撤消该对象。
+CUDA driver version is insufficient for CUDA runtime version: 
+means your GPU can`t been manipulated by the CUDA runtime API, so you need to update your driver.
+1.
+_T,_TEXT
+_tcslen
+_countof,sizeof 字符和字节数
+这些检查中的任何一项失败，函数都会设置局部于线程的C运行时变量errno。
+
+可以看出，在所有方法的名称中，都含有一个“Cch”。这表示Count of characters，即字符数；
+通常使用_countof宏来获取此值。另外还有一系列名称中含有“Cb”的函数，比如StringCbCat(Ex)，
+StringCbCopy(Ex)和StringCbPrintf(Ex)。这些函数要求用字节数来指定大小，而不是用字符数；
+通常使用sizeof操作符来获取此值。
+
+2.dll after lose dll attribute.
+显式链接.dll,隐式链接 .h,.lib,.dll;
+20ms 调度 ；SRWlock；
+code everyday;ubuntu;
+chenghao;
+sleepconditionvarible
+initializecriticalsectionandspin
+3.
+总结：应该首先尝试不要共享数据，然后依次使用volatile读取、volatile写入、Interlocked函数、SRWLock以及关键段。
+仅当这些都不能满足要求的时候，再使用内核对象。
+SRWLOCK g_SRWLock; //定义SRWLOCK结构
+ InitializeSRWLock(&g_SRWLock) ;  AccquireSRWLockShare 独占访问（写入进程）和共享访问（读取进程）。
+  AcquireSRWLockExclusive(&g_SRWLock);   ReleaseSRWLockExclusive(&g_SRWLock
+  "排他锁",共享锁 申请 释放。
+4.
+我们希望线程以原子的方式把锁释放并将自己阻塞，直到某一个条件成立为止。要实现这样的线程同步是比较复杂的。Windows通过SleepConditionVariableCS(critical section) 或者SleepConditionVariableSRW 函数，提供了一种 条件变量 帮助我们完成这项工作。
+当线程检测到相应的条件满足的时候（比如，有数据供读取者使用），它会调用 WakeConditionVariable 或  WakeAllConditionVariable,这样阻塞在Sleep*函数中的线程就会被唤醒。
+CONDITION_VARIABLE g_ConditionVar;  
+WakeConditionVariable(&g_ConditionVar);
+SleepConditionVariableSRW(&g_ConditionVar,&g_lock,INFINITE,CONDITION_VARIABLE_LOCKMODE_SHARED);  
+ 条件变量和条件等待；
+开始将文本字符串想象为字符的数组，而不是char或字节的数组。
+获得保证能容纳实现所建立的最大对象的字节大小。size 字符串的长度
+malloc(nCharacters * sizeof(TCHAR)) MultiByteToWideCha
+
+IsTextUnicode（）;
+5.系统会创建和处理几种类型的内核对象，比如访问令牌（access token）对象、事件对象、文件对象、文件映射对象、I/O完成端口对象、作业对象、mailslot对象、mutex对象、pipe对象、进程对象、semaphore对象、线程对象、waitable timer对象以及thread pool worker factory对象等等。
+6.
+每个内核对象都只是一个内存块，它由内核分配，并只能由内核访问。这个内存块是一个数据结构，其成员维护着与对象相关的信息。少数成员（安全描述符、使用计数等等）是所有对象都有的
+内核对象的所有者是内核，而非进程。换言之，如果你的进程调用一个函数来创建了一个内核对象，然后进程终止运行，则内核对象并不一定会销毁。
+内核知道当前有多少个进程正在使用一个特定的内核对象，因为每个对象都包含一个使用计数（usage count）。
+
+7. 一个进程在初始化时，系统将为它分配一个句柄表（handle table）。指向内核对象内存的指针
+因为我认为作为一名优秀的Windows程序员，必须理解如何管理进程的句柄表
+
+"Write the code，change the world"
+一个进程首次初始化的时候，其句柄表为空。当进程内的一个线程调用一个会创建内核对象的函数时（比如CreateFileMapping），内核将为这个对象分配并初始化一个内存块。然后，内核扫描进程的句柄表，查找一个空白的记录项（empty entry）。
+CloseHandle(h); h = NULL;关闭内核对象
+8. 如何利用三种不同的机制来允许进程共享内核对象：使用对象句柄继承；为对象命名；以及复制对象句柄。
+父进程和子进程中，对一个内核对象进行标识的句柄值是完全一样的。
+9.子进程并不知道自己继承了任何句柄。在子进程的文档中，应指出当它从另一个进程生成时，希望获得对一个内核对象的访问权——只有在这种情况下，内核对象的句柄继承才是有用的。
+ 。注意，句柄继承之所以能够实现，惟一的原因就是“共享的内核对象”的句柄值在父进程和子进程中是完全一样的。这正是父进程能将句柄值作为命令行参数来传递的原因。
+ GetEnvironmentVariable
+ 
+ meiji ...
+
+ 别说 C 语言，一切编程语言最终都只能做数学题，根据给定的数据，算出另一些数据，算出更多的数据，然后存贮、发送或者呈现算出的数据。
+现代的所谓编程这一活动，其实大部分时候是在「合理地堆砌别人已经实现的功能来实现新的功能」。
+ 
+1. GetFileSizeEx();GetCompressedFileSize();
+glog的使用是比较简单的, 几乎可以不用配置就直接使用了。在配置方式上, glog和一般的日志系统(如log4系列)是不太一样的, 后者一般使用配置文件, 而glog是在命令行参数中指定的。对比优缺点, 配置文件做的配置可能更加强大一些, 不过命令行配置虽然简单但是也不失灵活。
+//json_error
+在一个VS2010升级到VS2012的项目中项目，使用其中一个静态库时出现下面这个情况。
+error LNK2038: 检测到“_ITERATOR_DEBUG_LEVEL”的不匹配项: 值“2”不匹配值“0”
+
+可能是release下面引用了debug下面编译出来的静态库。
+json_value.asm: No such file or directory
+2014年01月03日 ⁄ 综合 ⁄ 共 169字	⁄ 字号 小 中 大 ⁄ 评论关闭
+
+链接提示：无法打开编译器生成的文件:“../../build/vs71/release/lib_json\json_writer.asm
+
+解决方法：1：修改jsoncpp的项目设置  配置属性---全程序优化 为无全程序优化
+
+      或者2：修改菜单－－－项目－－属性－－－配置属性－－－c/c++---输出文件－－－汇编程序输出：无列表
+编译和使用配置需一样的设置。
+
+
+
+1.json_value.asm”: No such file or directory
+2.jsoncpp fatal error link1257
+I solved this problem by removing "Use Link Time Code Generation" option from the lib_json project.
+I fixed it like so:
+1) go under lib_json -> Properties -> Configuration Properties -> C/C++ -> Output Files -> Assembler Output
+2) change it to No Listing
+recompile and you're done :)
+P.S. I'm using Visual Studio 2010
+//end json_error
+//filemapping
+Boost程序库完全开发指南
+而在某些特殊行业，经常要面对十几GB乃至几十GB容量的巨型文件，而一个32位进程所拥有的虚拟地址空间只有2^32 = 4GB，
+显然不能一次将文件映像全部映射进来。对于这种情况只能依次将大文件的各个部分映射到进程中的一个较小的地址空间。这需要对上面的一般流程进行适当的更改：
+
+　　1）映射从文件开头的映像；
+
+　　2）对该映像进行访问；
+
+　　3）取消此映像；
+
+　　4）映射一个从文件中的一个更深的位移开始的新映像；
+
+　　5）重复步骤2，直到访问完全部的文件数据。
+
+tar 文件大小错误 ffffffff
+内存映射文件正是解决本地多个进程间数据共享的最有效方法。
+　　FILE_FLAG_RANDOM_ACCESS 针对随机访问对文件缓冲进行优化
+
+以FILE_FLAG_RANDOM_ACCESS标志打开文件时，系统使用了较多的缓存。
+
+FILE_FLAG_SEQUENTIAL_SCAN 
+指定文件将从头到尾连续地访问.这个标志可以提示系统优化文件缓冲. 如果程序在
+随机访问文件中移动文件指针,优化可能不会发生;然而,正确的操作仍然可以得到保
+证. 指定这个标志可以提高程序以顺序访问模式读取大文件的性能, 性能的提高在许多程序读取一些大的顺序文件时是异常明显的.但是可能会有小范围的字节遗漏.
+
+
+该函数只获取未经压缩的文件的长度，可使用 GetCompressedFileSize 函数获取一个压缩文件的长度。
+
+mapViewOfFile()函数允许全部或部分映射文件，在映射时，需要指定数据文件的偏移地址以及待映射的长度。其中，文件的偏移地址由DWORD型的参数dwFileOffsetHigh和dwFileOffsetLow组成的64位值来指定，而且必须是操作系统的分配粒度的整数倍，对于Windows操作系统，分配粒度固定为64KB。
+
+//end_filemappimng
+//已停止运行
+这个问题的一般原因就是参数传递过程诸如“指针未定义”等问题。 用Windbg工具调试吧
+缓冲区崩溃
+指针没初始化 windbg  
+//
+
+
+
