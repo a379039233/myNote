@@ -1,3 +1,6 @@
+
+
+
 Smemory<int> mol；
 　　表示将类模板Smemory的类型参数T全部替换成int 型，从而创建一个具体的类，并生成该具体类的一个对象mol。
 template <class numtype> //声明一个模板，虚拟类型名为numtype  胃肠炎、肠痉挛饮食不;忌辛辣刺激生冷油腻饮食，清淡饮食注意保暖
@@ -122,7 +125,7 @@ git reset HEAD 命令用于取消已缓存的内容。
 
 4. git status
 /////////////
-
+你是你的选择，而非你的天赋 we are our choices.
   推送。更新，上传（Git push）
 顾名思义，上传则是上至远端服务器了
   本章节我们将为大家介绍 Git 的工作流程。
@@ -134,6 +137,14 @@ git reset HEAD 命令用于取消已缓存的内容。
 提交修改。
 在修改完成后，如果发现错误，可以撤回提交并再次修改并提交。
 、、
+$ git clone https://github.com/a379039233/myNote.git
+cd 
+ls
+$ git add .
+git status
+$ git commit -m 'note first commit'
+$ git remote add origin https://github.com/a379039233/myNote.git
+$ git push origin master
 
   
   
