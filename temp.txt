@@ -1,0 +1,143 @@
+
+差异存储。
+commit.checkin 捡入，tag里程碑。
+git add -u 将本地有改动(包括删除和修改)的路径的已经追踪的
+文件标记到暂存区中。
+git add -A 使用-A参数会将添加所有改动的已跟踪文件和未跟踪文件。
+git commit -m "message"
+//git add ,git commit   3-5次 一次推送 到服务器。git push
+git pull mirror master //xiazai
+git push home
+git pull home master //xiazai
+//git pull git push
+
+
+all
+git init
+git add -A
+git commit -m "first commit"
+git tag v1 
+//
+git commit --a，对本地所有变更的文件执行提交操作，包括对本地修改的文件和删除的文件，但是不包括未被版本库跟踪的文件。但是这个命令最好不要使用，这样会丢掉Git暂存区带给用户的最大好处：对提交内容进行控制的能力
+
+git remote add origin https://github.com/a379039233/myNote.git
+$ git push origin master
+2、git push origin master的意思就是上传本地当前分支代码到master分支。git push是上传本地所有分支代码到远程对应的分支上。
+# git commit --amend 修改注释
+:wq!
+
+git:everyone is admin.删除已经提交的大文件
+git rm --cached big.img
+git commit --amend 
+git rebase -i <commit-id>
+一次只干一件事。commit
+git diff
+//修改bug而不提交当前内容
+git stash: 备份当前的工作区的内容，从最近的一次提交中读取相关内容，让工作区保证和上次提交的内容一致。
+git checkout new_branch
+git checkout origin_branch
+git stash pop
+//
+-----------------------------
+git clone https://github.com/a379039233/myNote.git
+cd mynote
+ls
+git add -u ;git add -A(new file)
+git commit -m "comment"
+git push
+-----------------------------
+不过在git中，其commit提供了一个--amend参数，可以修改最后一次提交的信息.但是如果你已经push过了，那么其历史最后一次，永远也不能修改了。 
+
+git log
+ 查看本地分支：$ git branch
+2 查看远程分支 $ git branch -r
+创建分支：
+1 创建本地分支（建立分支后，仍停留在当前分支，切换分支：git checkout branchName）
+$ git branch branchName
+2 创建分支后切换到新分支
+$ git checkout -b branchName
+提交分支：
+1 提交到远程分支
+$ git commit -a -m 'my new branch'
+git push origin branchName:branchName
+2 如果想把本地的某个分支mybranch提交到远程仓库，并作为远程仓库的master分支
+$ git push origin mybranch:master
+
+删除分支：
+1 删除远程分支
+$ git push origin :branchName
+2 删除本地分支，强制删除用-D
+$ git branch -d branchName
+
+合并分支
+将分支branchName和当前所在分支合并
+$ git merge branchName
+
+标记tag
+对当前分支打tag：
+git tag tagContent
+然后push到远程即可：
+git push origin BranchName:BranchName
+/////////////// git branch -d newBranch
+git tag -m "Tag on new commit"     mytag2
+git tag
+git checkout mytag2
+////First cmd
+git --version
+git config --global user.name "liuyong"
+git config --global user.email "234"
+--git alias
+git config --system alias.st status //all user
+git config --global alias.ci commit //local user   配置文件修改
+git config --system alias.co checkout
+git config --system alias.br branch
+
+
+
+cygwin (cygwin1.dll->windows linux)
+tortoiseGit是对git命令的封装。
+echo "hello" -> 22.rxt
+修改后，不修改：git checkout -- 22.txt //撤销未提交的修改
+on branch master.
+:wq!
+cd ..
+git clone demo demo_bak ;备份
+git st -s //M:modify
+head:当前版本库的头指针。
+工作区，暂存库，版本库
+git diff 工作区，暂存库
+git diff HEAD 工作区，head
+git diff --cached //暂存库，版本库
+git log //commit ok?
+暂存区 stage,index.   .git/index
+git reset head ; head->index 
+git rm --cached <file> ;del index file
+git checkout //index -> work area. dangerous
+git checkout head //head->index and work area.
+//add,commit,git reset head,git rm cached,git checkout,git checkout head.
+huizhong 123456789
+
+不要使用git commit -a;
+git stash ;//保存当前工作进度。git stash pop
+git reset ...
+git checkout //重写工作区
+直接在工作区中删除，对暂存区和版本库没有任何影响。
+git rm 1.txt 3.txt
+git commit -m "delete"
+git mv 1.txt 222.txt //rename
+
+
+但别的用户在将更新push上来的时候容易出现冲突。
+解决办法就是使用”git init –bare”方法创建一个所谓的裸仓库，之所以叫裸仓库是因为这个仓库只保存git历史提交的版本信息，而不允许用户在上面进行各种git操作，如果你硬要操作的话，只会得到下面的错误（”This operation must be run in a work tree”）
+这个就是最好把远端仓库初始化成bare仓库的原因。
+
+tortoisegit
+1. setting: user email;git remote
+
+git clone 仓库目录  用户工作目录
+git add;
+git commit;
+git sync 弹出对话框，用于同步两个版本库	
+然后右键Tortoisegit-->push则提交到了远程服务器
+
+oracle p70

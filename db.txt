@@ -1,0 +1,119 @@
+注意在安装PL/SQL Developer软件时，不要安装在Program Files (x86)目录下，不然无法启动PL/SQL Developer。
+
+sqlserver 配置管理器里面，看sqlserver服务那个，如果只有一个mssqlserver，那就用local或者.来访问，
+如果不是，可能有命名实例
+
+1.
+windows防火墙无法更改某些设置 错误代码0X8007
+启动windows fireware服务。
+2. 无法打开源文件 tlh; rebuild
+直接用sql server执行sql语句试试
+sa修改密码123.    yong.liu 123
+oracle:system/scott/ly,123   orcl
+创建用户。
+
+2.
+block,12;
+用(&block[2]),6 可以查看block[2]到[7]
+getchar();
+
+sqlite是没有办法设置用户名密码的
+2)报错信息
+在指定的 DSN 中，驱动程序和应用程序之间的体系结构不匹配
+3)原因
+因为你使用64位的管理工具“数据源(ODBC)”连接32bit的mysql
+4)解决办法
+卸载Mysql odbc connector 64 bit 安装Mysql odbc connector 32 bit
+运行“C:\Windows\SysWOW64\odbcad32.exe” ，利用这个32位的“数据源(ODBC)”来创建mysql连接
+3 
+问题的解决之道
+数据，抽象，数据结构和算法。
+工具-os编译器汇编器语言。---机器指令。加法器，触发器，
+//OTL
+void set_commit(int auto_commit=0):
+设置流被刷新时否自动提交事务。两种条件下流会被刷新：a.缓冲区满   b.手动调用flush成员函数
+void flush(...):
+执行和流关联的SQL语句。如执行：
+
+otl_stream delStream;
+
+delStream.open(100, delete from book where id = :f1 and price = :f2, dbConnect);   //正常情况下向流中加入100条记录时才执行删除
+
+delStream << 1;
+
+delSteam << 'C++';
+
+delStream.flush();         //立即执行删除操作，尽管当前流中只有一条记录
+
+long get_rpc():
+获取流中SQL语句执行后所影响到的记录数，如插入100条记录，则调用此函数返回的即为100
+
+
+•OTL的主要类
+主要类包括：otl_stream、otl_connect、otl_exception
+ otl_stream类是OTL“流
+ ”的概念的具体表现形式，任何通过输入/输出参数使用SQL语句、PL/SQL 块或者是存储过程调用，在C++的编程中都能通过otl_stream类来实现。
+
+int connected
+在某些情况下，密码还可能包括有@符号，如果需要增加该符号，则需要通过”\”标志进行转义。
+auto_commit标志是用来设置连接的自动提交标志。它意味着，每执行一个SQL语句，都将会自动提交该事务。
+但是与otl_stream里面的自动提交是两码事。如果需要设置自动提交，则将该参数设置为1,否则默认为0（不自动提交）。
+在ORACLE7、ODBC或DB2 CLI版本里面，自动提交意味着每执行完都提交，但是在ORACLE8及以后版本里面，
+该标志则是执行成功后才提交。
+
+
+USER/PASSWORD@DSN(类ORACLE格式)
+DSN=VALUE;UID=VALUE;PWD=VALUED(ODBC格式)
+
+仅用于ODBC或DB2 CLI。必须定义OTL_UNICODE_EXCEPTION_AND_RLOGON宏。
+连接数据库。该函数在定义了UNICODE情况下使用，它能够通过UNICODE的用户名和密码连接数据库void commit()
+提交一个事务。
+对于ORACLE/ODBC/DB2 CLI来说，默认的自动提交为否，那么对于所有执行过的事务都需要手工的调用该函数进行事务提交。
+如果设置了自动提交，则不需要再调用该
+set_character_set。
+仅适用于定义了OTL_UNICODE宏的ORACLE　OCI8i/9i/10g/11g环境。
+SQLCS_IMPLICIT：数据库默认的字符集
+SQLCS_NCHAR：数据库国际字符集
+当使用了VARCHAR2/CHAR/LONG/CLOB类型的时候，则需要默认的字符集；当使用了NVARCHAR2/NCHAR/NCLOB字段类型的情况下，则需要设置为国际字符集。
+SQLCS_IMPLICIT/SQLCS_NCHAR是在ORACLE的OCI头文件里面被定义的。
+ 
+一旦该函数设置了字符集，那么所有的通过该函数设置过的otl_connect连接的流都将使用该字符集。
+在使用了UNICODE后，字符的定义也将被一同进行了扩展。如CHAR[20]代表的是容纳一个双字节的19个字符，
+还加上两个字节的空字符。这样做的主要目的是为了跟数据库里面兼容。
+
+OracleClient 64-bit, Release 11.2.0.3.0。
+
+所以必须，新建x64 SolutionPlatform
+热心肠一副，温柔二片，说理三分你若有理，聪明人一点就通，不用十分，三分尽够了，不必画蛇添足；碰到蠢人(或一时走进死胡同的人)，你再多费口舌无用，何必执着，不妨假以时日，让他自己慢慢去悟；至于蛮横汉，他本不讲理，你即使讲上十二分，也无异于是对牛弹琴
+
+
+
+>附加包含目录；附加库目录下
+#define OTL_UNICODE
+使用otl_stream的<<操作符绑定SQL中的变量。 (8) 使用otl_stream的>>操作符读取返回结果。 
+
+
+缓冲区是用于存放SQL执行过程中的逻辑行数。
+再加上因为delete处理过程中比free多一步就是调用析构函数。
+ OCI中DateTime的处理相当麻烦, 可以使用char来替换DateTime使用. 在构造SQL的时候, 使用to_date进行转换. to_date(:Vlogtime,'YYYY-MM-DD HH24:MI:SS')
+ 
+    注意：otl_stream，默认情况下，语句执行完毕后，会自动提交数据库，需慎用。
+     ERROR [HY104][ODBC Microsoft Access Driver] Invalid Precision Value"
+
+SQL Server Native Client (ODBC)
+
+
+传统的数据库API处理SQL语句的时候，需要绑定变量与占位符，因此，程序员需要定义变量、解析SQL语句、调用绑定占位符的函数、把变量绑定到占位符上、执行SQL、读取输出的变量等等。如此循环。以上所有的这些操作在OTL里面的otl_stream类里面都是自动处理的，otl_stream类提供了与数据库交互自动化最大性能。该性能仅取决于一个参数－缓冲区大小。缓冲区是用于存放SQL执行过程中的逻辑行数。
+一个SQL语句在otl_stream里面至少需要一个输入或输出占位符，对于没有占位符的SQL语句，它将被作为常量的SQL语句作为另一种方式执行。
+在ODBC或DB2 CLI里面，占位符则是通过问号来表示的。如：
+INSERT INTO TABLE_NAEM VALUES(?,?,?,?).
+在OTL　2.0/ODBC版本里面仍然采用了位置名的占位符。如：
+INSERT INTO TABLE_NAME(:1<INT>,:2<INT>,:3<INT>,:4<INT>);
+while(s>>f1>>f2) { 
+  cout<<”f1=”<<f1<<”, f2=”<<f2<<endl; }
+}
+
+刷新流的输出缓冲区。这实际上意味着批量执行SQL语句，其执行的批量和流输出缓冲区中已经填充的SQL数相等。当输出缓冲区被填满时，缓冲区将被自动刷新。如果流的auto_commit标志被置上，则在刷新完毕后当前事务被提交。
+
+
+//end OTL
