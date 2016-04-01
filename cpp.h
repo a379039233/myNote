@@ -63,8 +63,9 @@ auto f1(int) -> int(*)(int, int);
 12. class 
 数据抽象和封装。接口和实现。
 this指针，const成员函数(mutable).
-
-
+return *this;
+如果自定义了构造函数，那么默认构造函数就不可以用了，强制=default声明可以让默认构造函数恢复。
+13.
 
 
 
