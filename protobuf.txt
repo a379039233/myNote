@@ -1,0 +1,84 @@
+protobuf
+protocol buffer  PB
+protocolbuffer(以下简称PB)是google 的一种数据交换的格式，它独立于语言，独立于平台。google 提供了多种语言的实现：java、c#、c++、go 和 python，每一种实现都包含了相应语言的编译器以及库文件。由于它是一种二进制的格式，比使用 xml 进行数据交换快许多。可以把它用于分布式应用之间的数据通信或者异构环境下的数据交换。作为一种效率和兼容性都很优秀的二进制数据传输格式，可以用于诸如网络传输、配置文件、数据存储等诸多领域。
+
+有了这种代码生成机制，开发人员再也不用吭哧吭哧地编写那些协议解析的代码了
+自描述:当前组件包含了自身与其他组件交互相关的描述信息,不需要其他的配置文件或者额外信息来描述.
+改proto重新生成.cc/.h。
+
+
+内核（kernel）利用文件描述符（file 
+1. 写proto文件，
+
+string sOrder;
+order.SerailzeToString(&sOrder);
+Order order;
+if(order.ParseFromString(sOrder))；  // 解析该字符串
+
+2。！！！
+Person person;
+person.set_name("John Doe");
+person.set_id(1234);
+person.set_email("jdoe@example.com");
+fstream.output("myfile",ios::out | ios::binary);、、ios::trunc
+if(!person.SerializeToOstream(&output)) return;
+然后，你可以读取报文中的数据:
+
+fstream input("myfile",ios::in | ios:binary);
+Person person;
+person.ParseFromIstream(&input);
+cout << "Name: " << person.name() << endl;
+cout << "E-mail: " << person.email() << endl;
+3.
+	1，.proto文件
+	相当于确定数据协议，数据结构中存在哪些数据，数据类型是怎么样
+
+	2，modifiers
+	2-1 required 不可以增加或删除的字段，必须初始化
+	2-2 optional 可选字段，可删除，可以不初始化
+	2-3 repeated 可重复字段， 对应到java文件里，生成的是List //数组
+
+	3，Message
+	在proto文件里，数据的协议时以Message的形式表现的。
+4.
+ required string strObj = 1 [default="hello"];  
+ 
+ protobuf-2.5.0\vsprojects\protobuf.sln 编译
+ 
+ lm::helloworld    msg1;
+
+ 
+ ios::app表示在文件末尾追加
+ ate:打开文件之后令读写位置移至文件尾端（at end）
+trunc:将先前的文件内容移除（Remove)
+const Ref& ref = param;
+
+1. 下载
+https://sourceforge.net/projects/protobuf/?source
+protobuf-2.6.0.zip
+https://github.com/google/protobuf 
+2. 编译
+解压，打开protobuf.sln,编译生成库文件(libprotoc.lib,libprotobuf.lib)和编译器 (protoc.exe).
+（只用生成libprotobuf,libprotoc,protoc三个项目即可）。
+3. 编写proto通讯协议格式文件
+用的是examples下的：addressbook.proto文件，如下：
+
+3. 命令生成（protoc.exe）
+protoc -I=$SRC_DIR --cpp_out=$DST_DIR addressbook.proto
+SRC_DIR addressbook.proto目录，–cpp_out代表输出目录，addressBOOK.proto代表要编译的文件
+我用的是：protoc -I=. --cpp_out=. addressbook.proto
+(protoc.exe,addressbook.proto以及输出的addressbook.pb.h,addressbook.pb.cc都在当前目录下。)
+
+4. 新建工程使用。
+注意事项：
+1).添加附加库目录（libprotoc.lib,libprotobuf.lib目录），并在程序中引用libprotoc.lib,libprotobuf.lib。
+2).附加包含目录, protobuf-2.6.1\src。
+3).addressbook.pb.cc 编译选项：不使用预编译头；
+4).
+错误	2	error C4996: 'std::_Copy_impl': Function call with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, 
+use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'	c:\program files\microsoft visual studio 12.0\vc\include\xutility	2132	1	ProtobufDemo
+添加预处理器定义：_SCL_SECURE_NO_WARNINGS 即可。
+代码：
+
+
+

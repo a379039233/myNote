@@ -117,3 +117,38 @@ while(s>>f1>>f2) { 
 
 
 //end OTL
+
+$ git clone https://github.com/a379039233/myNote.git
+cd 
+ls
+$ git add .
+git status
+$ git commit -m 'note first commit'
+$ git remote add origin https://github.com/a379039233/myNote.git
+$ git push origin master
+-----------------------------
+git clone https://github.com/a379039233/myNote.git
+cd mynote
+ls
+git add -u ;git add -A(new file)
+git commit -m "comment"
+git push
+-----------------------------
+a. 如果使用的Oracle oci是64位的，vs就要编译成64位的程序，如果编译成32位，会提示找不到Oracle的动态库。
+
+
+1. VS 编译环境设置
+
+a. 在工程项目中引入otlv4.h头文件
+
+b. 在vs中指定头文件目录:
+
+C:\oracle\product\11.2.0\dbhome_1\OCI\include
+
+c.指定 附加库目录:
+
+C:\oracle\product\11.2.0\dbhome_1\OCI\lib\MSVC
+
+d. 输入附加库:
+
+oci.lib
