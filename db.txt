@@ -1,3 +1,4 @@
+typedef {}dat_t;
 注意在安装PL/SQL Developer软件时，不要安装在Program Files (x86)目录下，不然无法启动PL/SQL Developer。
 
 sqlserver 配置管理器里面，看sqlserver服务那个，如果只有一个mssqlserver，那就用local或者.来访问，

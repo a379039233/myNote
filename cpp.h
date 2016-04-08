@@ -66,14 +66,39 @@ this指针，const成员函数(mutable). server,mode,boost,
 return *this;
 如果自定义了构造函数，那么默认构造函数就不可以用了，强制=default声明可以让默认构造函数恢复。
 13.简单的来说就是，在有指针的情况下，浅拷贝只是增加了一个指针指向已经存在的内存，而深拷贝就是增加一个指针并且申请一个新的内存，使这个增加的指针指向这个新的内存，采用深拷贝的情况下，释放内存的时候就不会出现在浅拷贝时重复释放同一内存的错误！
+程序员只需在函数声明后加上“=default;”，就可将该函数声明为 defaulted 函数，编译器将为显式声明的 defaulted 函数自动生成函数体。
+ virtual ~X()= defaulted; // 编译器自动生成 defaulted 函数定义体
+14. mutable size_t ss; explicit constructor();
+类的静态成员，与类相关。
+ifstream in;ofstream out;
+15.vector,list,deque,
+智能指针，
+//////////////////////////////////
+io模型
+1.同步--等待完成SendMessage  阻塞
+异步--通过三种途径返回结果：状态、通知和回调
+阻塞：阻塞调用是指调用结果返回之前，当前线程会被挂起。函数只有在 得到结果之后才会将阻塞的线程激活。
+//
+小结：同步就是当一个进程发起一个函数（任务）调用的时候，一直等待直到函数（任务）完成，而进程继续处于激活状态。而异步情况下是当一个进程发起一个函数（任务）调用的时候，不会等函数返回，而是继续往下执行当，函数返回的时候通过状态、通知、事件等方式通知进程任务完成。
 
-
-
-
-
-
-
-
+阻塞是当请求不能满足的时候就将进程挂起，而非阻塞则不会阻塞当前进程，
+!!!即阻塞与非阻塞针对的是进程或线程而同步与异步所针对的是功能函数。
+//非阻塞IO
+而对于应用程序，虽然这个IO操作很快就返回了，但是它并不知道这个IO操作是否真的成功了，为了知道IO操作是否成功，
+一般有两种策略：一是需要应用程序主动地循环地去问kernel(这种方法就是同步非阻塞IO)；
+二是采用I/O通知机制，比如：IO多路复用(这种方法属于异步阻塞IO)或信号驱动IO(这种方法属于异步非阻塞IO)。
+IO多路复用：“在这种模型中，IO函数是非阻塞的，使用阻塞 select、poll、epoll系统调用来确定一个 或多个I/O 描述符何时能操作。”
+现在用select、poll、epoll这样的函数来专门负责阻塞同时监听这一万个请求的状态，一旦有数据到达了就负责通知，这样就将之前一万个的各自为战的等待与阻塞转为一个专门的函数来负责与管理。
+ 信号驱动IO(异步非阻塞IO)：
+当kernel执行完毕，返回read的响应，(kernel)就会产生一个信号或执行一个基于线程的回调函数来完成这次 I/O 处理过程。
+//
+为此我们首先来看看服务器编程的模型，客户端发来的请求服务端会产生一个进程来对其进行服务，每当来一个客户请求就产生一个进程
+来服务，然而进程不可能无限制的产生，因此为了解决大量客户端访问的问题，引入了IO复用技术，即：一个进程可以同时对多个客户
+请求进行服务。也就是说IO复用的“介质”是进程(准确的说复用的是select和poll，因为进程也是靠调用select和poll来实现的)，
+复用一个进程(select和poll)来对多个IO进行服务，虽然客户端发来的IO是并发的但是IO所需的读写数据多数情况下是没有准备好的，
+因此就可以利用一个函数(select和poll)来监听IO所需的这些数据的状态，一旦IO有数据可以进行读写了，进程就来对这样的IO进行服务。
+因此，select/poll一般只能处理几千的并发连接。
+/////////////////就六和豆浆旁边 九如村 yiguanmiao.
   堆：char *s1 = "Hellow Word"；是在编译时就确定的；
     栈：char s1[] = "Hellow Word"； 是在运行时赋值的；用数组比用指针速度要快一些，因为指针在底层汇编中需要用edx寄存器中转一下，而数组在栈上直接读取。
 dd
@@ -163,10 +188,10 @@ Right Hand Side
 namespace HZ_COMPANY{
 	class DBManager{
 	private:
-		DBManager();
+		DBManager() = default;
 		explicit DBManager(const string strConn);
-		DBManager(const DBManager& rhs);
-		DBManager& operator=(const DBManager& rhs);
+		DBManager(const DBManager& rhs) = delete;
+		DBManager& operator=(const DBManager& rhs) = delete;
 	public:
 		bool open();
 		bool exec(const string& sql)   const;
