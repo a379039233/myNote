@@ -1,0 +1,222 @@
+禅道和 bugfree  
+EasyBUG
+迭代器（Iterator）
+
+　　迭代器是一种设计模式，它是一个对象，它可以遍历并选择序列中的对象，而开发人员不需要了解该序列的底层结构。迭代器通常被称为“轻量级”对象，因为创建它的代价小。
+GOF给出的定义为：提供一种方法访问一个容器（container）对象中各个元素，而又不需暴露该对象的内部细节。 从定义可见，迭代器模式是为容器而生。
+////
+STL的一个重要特点是数据结构和算法的分离。通用的算法：sort...
+基于模板，非oop。
+下面的小节说明了三个基本的STL组件：
+
+1）           迭代器提供了访问容器中对象的方法。例如，可以使用一对迭代器指定list或vector中的一定范围的对象。迭代器就如同一个指针。事实上，C++的指针也是一种迭代器。但是，迭代器也可以是那些定义了operator*()以及其他类似于指针的操作符地方法的类对象。
+
+2）           容器是一种数据结构，如list，vector，和deques ，以模板类的方法提供。为了访问容器中的数据，可以使用由容器类输出的迭代器。
+
+3）           算法是用来操作容器中的数据的模板函数。例如，STL用sort()来对一个vector中的数据进行排序，用find()来搜索一个list中的对象。函数本身与他们操作的数据的结构和类型无关，因此他们可以在从简单数组到高度复杂容器的任何数据结构上使用。
+对于STL数据结构和算法，你可以使用五种迭代器。下面简要说明了这五种类型：
+
+·        Input iterators 提供对数据的只读访问。
+
+·        Output iterators 提供对数据的只写访问
+
+·        Forward iterators 提供读写操作，并能向前推进迭代器。
+
+·        Bidirectional iterators提供读写操作，并能向前和向后操作。
+
+·        Random access iterators提供读写操作，并能在数据中随机移动。
+
+尽管各种不同的STL实现细节方面有所不同，还是可以将上面的迭代器想象为一种类继承关系。从这个意义上说，下面的迭代器继承自上面的迭代器。由于这种继承关系，你可以将一个Forward迭代器作为一个output或input迭代器使用。同样，如果一个算法要求是一个bidirectional 迭代器，那么只能使用该种类型和随机访问迭代器。 
+
+const vector<int>::iterator result;
+
+
+
+
+
+
+vector<int>::const_iterator iter1 = vec.cbegin();
+*iter = 3; //Error
+++iter; //Ok
+const vector<int>::iterator iter2 = vec.begin();
+*iter = 4; //Ok
+++iter; //Error
+
+bool comp(const ss &a,const ss &b)
+{
+    return a.a<b.a;
+}
+sort(v.begin(), v.end(),less<int>());//升
+
+sort(v.begin(), v.end(),greater<int>());//降
+
+vector<int> intVector(100);
+ 
+void main()
+{
+  intVector[20] = 50;
+  vector<int>::iterator intIter =
+    find(intVector.begin(), intVector.end(), 50);
+  if (intIter != intVector.end())
+    cout << "Vector contains value " << *intIter << endl;
+  else
+    cout << "Vector does not contain 50" << endl;
+}
+
+template <class InputIterator, class T>
+InputIterator find(
+  InputIterator first, InputIterator last, const T& value) {
+    while (first != last && *first != value) ++first;
+    return first;
+  }
+
+STL中，函数被称为算法，也就是说它们和标准C库函数相比，它们更为通用。STL算法通过重载operator()函数实现为模板类或模板函数。这些类用于创建函数对象，对容器中的数据进行各种各样的操作。下面的几节解释如何使用函数和函数对象。
+重载函数调用操作符的类，其对象常称为函数对象（function object），即它们是行为类似函数的对象。又称仿函数。
+如果一个对象具有了某个函数的功能，我们变可以称之为函数对象。
+class Sum {
+public:
+int operator()(int i, int j) { return i+j; }
+}; Sum sum;
+
+template <class T>
+class Sum {
+public:
+T operator()(T i, T j) { return i+j; }
+};
+Sum <int> sum;
+
+//函数对象
+//加减乘除取模  
+template <class T>  
+struct plus : public binary_function<T, T, T> {  
+    T operator()(const T& x, const T& y) const { return x + y; }  
+};  
+template <class T>  
+struct minus : public binary_function<T, T, T> {  
+    T operator()(const T& x, const T& y) const { return x - y; }  
+};  
+在内部将每个容器中的对象和第三个参数作为multiplies函数对象的参数,
+///////////////////
+int (*func) (int x);
+typedef int (*PF)(char ch,int x);
+PF pf;
+void foo(char ch, int i, PFT pf){}
+
+
+//
+class Func{
+public:
+    int operator() (int a, int b)
+    {
+        cout<<a<<'+'<<b<<'='<<a+b<<endl;
+        return a;
+    }
+};
+int addFunc(int a, int b, Func& func)
+{
+    func(a,b);
+    return a;
+}
+Func func;
+addFunc(1,3,func);
+//
+从实现层次看，整个STL是以一种类型参数化（type parameterized）的方式实现的，这种方式基于一个在早先C++标准中没有出现的语言特性--模板（template）。
+
+代码算法复用！模块化，抽象！！！
+函数模板可以用来创建一个通用的函数，以支持多种不同的形参，避免重载函数的函数体重复设计。它的最大特点是把函数使用的数据类型作为参数。
+template<typename T>
+T fuc(T x, int y)
+{
+    T x;
+    //……
+}
+
+STL六大组件
+容器（Container）算法（Algorithm）迭代器（Iterator）
+仿函数（Function object）
+适配器（Adaptor）
+空间配置器（allocator）
+
+向量vector
+可以用常数时间访问和修改任意元素，在序列尾部进行插入和删除时，具有常数时间复杂度，对任意项的插入和删除就有的时间复杂度与到末尾的距离成正比，尤其对向量头的添加和删除的代价是惊人的高的
+<vector>
+双端队列deque
+基本上与向量相同，唯一的不同是，其在序列头部插入和删除操作也具有常量时间复杂度
+<deque>
+表list
+对任意元素的访问与对两端的距离成正比，但对某个位置上插入和删除一个项的花费为常数时间。
+
+1.算法
+算法部分主要由头文件<algorithm>，<numeric>和<functional>组成。< algorithm>是所有STL头文件中最大的一个，它是由一大堆模版函数组成的，可以认为每个函数在很大程度上都是独立的，其中常用到的功能范 围涉及到比较、交换、查找、遍历操作、复制、修改、移除、反转、排序、合并等等。<numeric>体积很小，只包括几个在序列上面进行简单数学运算的模板函数，包括加法和乘法在序列上的一些操作。<functional>中则定义了一些模板类，用以声明函数对象。
+STL的算法也是非常优秀的，它们大部分都是类属的，基本上都用到了C＋＋的模板来实现，这样，很多相似的函数就不用自己写了，只要用函数模板就可以了。
+我们使用算法的时候，要针对不同的容器，比如：对集合的查找，最好不要用通用函数find（），它对集合使用的时候，性能非常的差，最好用集合自带的find（）函数，它针对了集合进行了优化，性能非常的高。
+2.函数适配器：通过转换或者修改其他函数对象使其功能得到扩展。
+plus<int> int_plus;
+cout << int_plus(111,222) << endl;
+函数对象适配器的作用就是使函数转化为函数对象，或是将多参数的函数对象转化为少参数的函数对象。
+bind1st  //通过绑定第一个参数，使二元的函数对象转化为一元的函数对象
+bind2nd  //通过绑定第二个参数，使二元的函数对象转化为一元的函数对象
+not1     //对一元的函数对象取反
+not2     //对二元的函数对象取反
+// 移除所有小于100的元素
+arr.erase( std::remove_if( arr.begin(),  arr.end(),
+    std::bind1st( std::less< int>(), 100)), arr.end());
+
+这里的表达式相当于100 < arr.value
+// 移除所有小于等于100的元素
+arr.erase( std::remove_if( arr.begin(),  arr.end(),
+    std::not1(std::bind2nd( std::greater< int>(), 100))), arr.end());
+	
+	
+	1. 一直听别人说，开房怎么怎么爽，终于有一天我忍不住去开房了。。还真是爽啊，一个人睡这么大一张床!
+
+　　2. 谎言有三宝：天长、地久、爱到老;韩剧有三宝：车祸、癌症、治不好
+
+　　3. 别老埋怨老天对你不公，其实老天根本就不知道你是哪根葱
+
+　　4. 一认真你就输了，一直认真你就赢了
+
+　　5. 如果游泳可以减肥，那鲸鱼怎么肥成那德性。
+
+　　6. 能看穿你三方面的人值得信任：你笑容背后的悲伤，你怒火里掩藏的爱意，你沉默之下的原因。
+
+　　7. “我想放狗咬你”“你舍得?”“我舍不得狗!”
+
+　　8. 我不羡慕她比我漂亮，我不羡慕她比我有钱，我羡慕的是她的身边有你。
+
+　　9. 男人讨厌女人猜疑，往往是因为她们猜的太准了
+
+　　10. 生活中一定要记住这两件事：不在生气时做决定，不在高兴时轻许诺言。
+
+　　11. 世界上有两种东西会趴玻璃上：一个是壁虎，另一个是班主任。
+
+　　12. 人生三大原则：要么狠，要么忍，要么滚。
+
+　　
+
+　　13. 不知什么时候开始我变成了自己口中最讨厌的那种人
+
+　　14. 越长大，越是小心翼翼，越是瞻前顾后，越是脆弱。成长，带走的不只是时光，还带走了当初那些不害怕失去的勇气。
+
+　　15. 每天内心都在“我靠我也要像他那么瘦!”和“妈的这个也太好吃了吧!”中徘徊。
+
+　　16. 所谓放假，家里遭嫌，出门没钱，每天特闲
+
+　　17. 对于这种喜欢把自己快乐建立在别人痛苦上的同学，我只想说“去的时候叫上我”
+
+　　18. 每次过年，总有那么一两个长辈喜欢把你不堪回首的往事拿出来让大家高兴高兴
+
+　　19. 你敢诅咒我吃方便面没有调料，我诅咒就你吃方便面只有调料
+
+　　20. “假期为什么感觉很短?”“因为假期没有上午。”
+
+　　21. 真希望自己变回小孩，因为，摔破的膝盖总比破碎的心要容易修补。
+
+　　22. 人为什么会犯下同样的错误?原因或许只有一个：前一次不够痛。
+
+　　23. 人，小时候简单，长大了复杂;穷时简单，变阔了复杂;落魄时简单，得势了复杂;君子简单，小人复杂;看自己简单，看别人复杂。这个世界其实很简单，只是人心很复杂。其实人心也很简单，只是利益分配时很复杂。人，一简单就快乐，但快乐的人寥寥无几;一复杂就痛苦，可痛苦的人却熙熙攘攘。
+
+　　24. 吃完饭，男的买单的是情侣，女的买单的是夫妻，抢着买单的是同学，都不想买单的是兄弟。
+
+　　25. 突然想到一个很严肃的学术性问题，是谁把60分定为及格的。
+	

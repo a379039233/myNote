@@ -1,0 +1,60 @@
+属性-通用属性-添加新引用。附加包含目录。dllexport or def file.
+name mangling	
+网络	名字改编; 名称重整; 名称改编; 名字粉碎;
+__declspec(dllexport)
+
+声明一个导出函数，是说这个函数要从本DLL导出。我要给别人用。一般用于dll中省掉在DEF文件中手工定义导出哪些函数的一个方法。当然，如果你的DLL里全是C++的类的话，你无法在DEF里指定导出的函数，只能用__declspec(dllexport)导出类
+
+__declspec(dllimport)
+
+声明一个导入函数，是说这个函数是从别的DLL导入。我要用。一般用于使用某个dll的exe中 不使用 __declspec(dllimport) 也能正确编译代码，但使用 __declspec(dllimport) 使编译器可以生成更好的代码。编译器之所以能够生成更好的代码，是因为它可以确定函数是否存在于 DLL 中，这使得编译器可以生成跳过间接寻址级别的代码，而这些代码通常会出现在跨 DLL 边界的函数调用中。但是，必须使用 __declspec(dllimport) 才能导入 DLL 中使用的变量。
+--如果DLL的使用者知道是用C＋＋编译器编译DLL，不加extern   “C”也可以，因为他知道名字改变的规则。调用GetProcAddress时，把函数名字改了就是了，改为修饰后的函数名。 如 fnDll1 改为 ?fnDll1@@YAHXZ。
+#ifdef C_CPP_DLL
+#define MYDLL extern "C" _declspec (dllexport)
+#else
+#define MYDLL _declspec(dllexport)
+#endif
+
+dll 二次封装
+//dll1.h:
+#ifndef _dll1_h
+#define _dll1_h
+#define MYDLL extern "C" _declspec (dllexport)
+MYDLL int add(int x,int y);
+#endif //_dll1_h
+
+//dll1.cpp
+#include "dll1.h"
+
+MYDLL int add(int x,int y)
+{
+	return x+y;	
+}
+//dll2.h
+#include "dll1.h"
+#pragma comment(lib,"dll1.lib")
+#ifndef _dll2_h
+#define _dll2_h
+#define MYDLL extern "C" _declspec (dllexport)
+MYDLL int add_10(int x,int y);
+#endif //_dll2_h
+//dll2.cpp
+#include "dll2.h"
+MYDLL int add_10(int x,int y)
+{
+	return add(x+y)+10;	
+}
+//usedll
+#include "stdafx.h"
+
+#include "dll1.h"
+#pragma comment(lib,"dll1.lib")
+#include "dll2.h"
+#pragma comment(lib,"dll2.lib")
+
+int main()
+{
+	cout<<"dll1_add:"<<add(3+6)<<endl;
+	cout<<"dll2_add:"<<add_10(3+6)<<endl;
+	getchar();
+}
