@@ -308,3 +308,43 @@ _cdecl...
 
 
 类方法的extern "C"
+SetCurrentDirectory
+设置当前路径，然后就可以以相对路径访问一些你程序相关的文件，不需要绝对路径
+1.char arr[100] = {1,2,3};
+char dat[100] = {0};
+memset(dat,'a',100);
+memcpy(dat,arr,100);
+2.com,dll,activex,theead, tongbu,qt linux....
+大端：（Big-Endian）就是把数值的高位字节放在内存的低位地址上，把数值的地位字节放在内存的高位地址上。
+小端：（Little-Endian）就是把数字的高位字节放在高位的地址上，低位字节放在低位地址上。
+我们常用的x86结构都是小端模式
+3. void f(void *param);
+void StartThread( unsigned int (__stdcall * ThreadFuc)( void *) )   
+{   
+    HANDLE hThread1 = (HANDLE)_beginthreadex(NULL, 0, ThreadFuc, NULL, 0, NULL);   
+}
+ /// 使用旋转锁初始化临界区，可以提高资源使用效率，尽可能使用这种方式进行资源保护   
+    InitializeCriticalSectionAndSpinCount( &g_cs, 400);   
+	1.锁住一个未被拥有的mutex，比锁住一个未被拥有的critical section需要花费几乎100被的时间。因为critical section不需要进入操作系统核心。 
+2.mutexs可以跨进程使用，critical section则只能够在同一进程中使用。 3.等待一个mutex时，你可以指定“结束等待”的时间长度。 4.CRITICAL_SECTION不是核心对象
+CRITICAL_SECTION cs;  ::InitializeCriticalSection(&cs); 
+::EnterCriticalSection(&cs); ::LeaveCriticalSection(&cs);
+ ::DeleteCriticalSection(&cs);//
+ HANDLE g_hMutex = CreateMutex(NULL,FALSE,NULL);                            
+OpenMutex() 
+ WaitForSingleObject()   
+ WaitForMultipleObject()       
+ MsgWaitForMultipleObject() 
+ReleaseMutex()             
+  CloseHandle() 
+WaitForSingleObject(g_hMutex, INFINITE);//等待互斥量 
+    cout<<(int)lpParameter<<endl; 
+    ReleaseMutex(g_hMutex);//释放互斥量 
+	
+4. 如果线程函数不可重入，显然不能让多个线程共用一个线程函数。 可以，但是注意同步。
+_atoi64    atodbl  都可以 _ttoi64 _ttof
+TCHAR       char        WCHAR
+------------------------------------
+_ttoi64     _atoi64     _wtoi64
+_tcstoi64   strtoi64    wcstoi64
+5.一个程序loadlibrary成功，一个失败，代码一样，原因是关联的一个dll不存在。

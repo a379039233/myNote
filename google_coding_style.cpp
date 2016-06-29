@@ -424,8 +424,13 @@ double *d=reinterpret_cast<double*> (n);type-id必须是类的指针、类的引
 2. 类方法的实现未加类标识。如， “CTest::Connect(void) { … }” 写成了 “Connect(void) { … }”。
 3. 缺少 obj 文件。在项目里添加“包含路径”：C:/curl/lib/release-dll.obj。
 4. 没有将项目需要的头文件、源文件都加入项目中，这个错误我犯了好几次。
+::WritePrivateProfileString("section1",NULL,NULL,"test:\\1.ini");
+::WritePrivateProfileString("section1","name1",NULL,"c:\\test.ini");
+石羊场公交站
+Any CPU在32位下，EXE将以32位执行，而在64位下，EXE将以64位执行。而x86的话，始终以32位执行。
 
-lookuptables[];
+
+lookuptables[];   ini重复字段的问题：删除ini重建，空格？只读？
 459 c
 1. short,int,long.   unsigned char.   //int,double first
 2. int:机器的自然字长？？ 64bit:win64,int=long=4byte
@@ -473,3 +478,20 @@ x00000002，则CPU如果取它的值的话需要访问两次内存，第一次�
 #pragma pack(1) struct 
 #pragma pack()
 把结构中的变量按照类型大小从小到大声明,尽量减少中间的填补空间.
+
+short:偶数地址上，int 4的倍数上。
+printf("%d %d",f(100),f(200));//C方式参数入栈顺序（从右至左）的好处就是可以动态变化参数个数。
+从右往左入栈的目的是方便的可变参数的使用，获得第一个参数的位置，
+*(p++);= *p++;   (*p)++;  if(p){}
+char *p;//只分配了4个字节的内存（32）
+sprintf(buf,"%x",10);
+if(strcmp(str,"123") == 0){}//match
+char a[12];strcpy(a,"123445"); c中非0为真。
+printf("%s,%d",__FILE__,__LINE__);//宏
+11.#define DEBUG printf("%s,%d",__FILE__,__LINE__) ,printf
+%ld;long ;  const;extern;static;
+空指针；数组溢出；变量未初始化；求值顺序；
+if(0 == x){} 左值：有地址的对象。
+
+
+
